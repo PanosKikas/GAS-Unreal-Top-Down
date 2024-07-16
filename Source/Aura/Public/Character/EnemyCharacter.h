@@ -14,11 +14,18 @@ UCLASS()
 class AURA_API AEnemyCharacter : public ACharacterBase, public IHighlightInterface
 {
 	GENERATED_BODY()
+
 public:
 	AEnemyCharacter();
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+
+	FORCEINLINE virtual int32 GetCharacterLevel() const override { return Level; }
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Character Class Defaults")
+	int32 Level = 1;
 };
